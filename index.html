@@ -1,0 +1,78 @@
+
+  
+<!-- Please see the beat_demo.html for more details on how this code works.  All comments will be related to
+new features/functions that were used for this specific example. -->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Connect Four</title>
+		<script src="app.js"></script>
+        <link rel="stylesheet"  href="styles.css">
+			
+	</head>
+	<body class="body" onload="beginGame();">
+		<!-- This is the heading HTML.  It is instructions on how to play -->
+		<h1>Connect Four</h1>
+		<p>Connect Four is a game where players take turn dropping colored circles in the top of the board, along different coloumns.  The goal is to make a row 
+			of 4 circles -rowwise,coloumnwise,and diagonal.</p>
+			<!-- Challenge: write an AI player --><!-- Ya I will do that -->
+		<p>This demo does not have a computer partner.</p>
+		
+		<!-- The begin_game button will run "beginGame()" function when clicked.  The () is required at the end to show it is a 
+		function, but no parameters are displaying -->
+		<button id ="begin_game" onclick="beginGame();">Begin Game</button>
+
+		<!-- All the action takes place in the gameboard, so I'm containing the gameboard in a div with the ID "gameboard" so that
+		you can always target any items within easily. -->
+		<div id="gameboard">
+			<!-- The game_info div allows game-specific information to easily be displayed -->
+			<div id="game_info">
+			</div>
+			<!-- The game table is the actual board.  A table seems the most logical structure for the data, as tables have rows and columns
+			although you most certainly could use divs, or other HTML elements.  The top row (and tablehead - 'thead') is reserved for the 
+			buttons to drop the game pieces. -->
+			<table id="game_table">
+				<thead>
+					<tr>
+						<!-- Set up the buttons that will drop the pieces in to the column.  This could be programmatically generated like
+						the rows/columns below, but since it was just 7, it wouldn't really save code -->
+						<td><button onclick="drop(0);">Drop</button></td>
+						<td><button onclick="drop(1);">Drop</button></td>
+						<td><button onclick="drop(2);">Drop</button></td>
+						<td><button onclick="drop(3);">Drop</button></td>
+						<td><button onclick="drop(4);">Drop</button></td>
+						<td><button onclick="drop(5);">Drop</button></td>
+						<td><button onclick="drop(6);">Drop</button></td>
+					</tr>
+				</thead>
+				<script>
+				//To make the code much more compact, javascript will actually be used to write the code for the game board
+				/*
+				a for loop is a basic concept for running a set of code multiple times.  It has 3 parameters, the first is a variable
+				name, in this case I used "row" and "col" I then set the value to 0.  The next parameter is 'under what conditions should 
+				i repeat the code below.  As long as that 2nd condition is "true" the code below will run.  The last parameter
+				is the increment.  This is run every time the code below is run.  In the loops below, I have i++ and j++ which means 
+				"add one to the value of row/col" 
+				*/
+				for (var row=0; row<=5; row++) {
+					/*document.writeln() function will write HTML code to the browser.  If you "inspect" this page after the browser has 
+					rendered the page, you will see a bunch of HTML
+					write the start of the table row tag
+					*/
+					document.writeln("<tr>");
+					for (var col=0; col<=6; col++) {
+						//write each table data element - with the row and col variables in the ID so it can be accessed later.
+						document.writeln("<td id='square_" + row + "_"+ col +"' class='board_square'></td>");							
+					}
+					//write the closing table row tag.
+					document.writeln("</tr>");	
+				}						
+										
+				</script>
+			</table>
+			<!-- game_status is a place for the game to provide status updates. -->
+			<div id="game_status">
+			</div>
+		</div>
+	</body>
+</html>
